@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => ['auth', 'roles'], 'roles' => 'user'], function () {
+    Route::get('/dashboard', 'HomeController@index');
+    Route::resource('/dashboard/surveys', 'SurveysController', ['only' => ['index', 'store', 'update', 'destroy']]);
+    Route::resource('/dashboard/submissions', 'SubmissionsController', ['only' => ['store']]);
+});
 
 // Admin group area
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
@@ -26,4 +30,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' =>
     Route::resource('roles', 'Admin\\RolesController', ['only' => ['index', 'store', 'update', 'destroy']]);
     Route::resource('permissions', 'Admin\\PermissionsController', ['only' => ['index', 'store', 'update', 'destroy']]);
     Route::resource('users', 'Admin\\UsersController', ['only' => ['index', 'store', 'update', 'destroy']]);
+    Route::resource('surveys', 'Admin\\SurveysController', ['only' => ['index', 'store', 'update', 'destroy']]);
 });

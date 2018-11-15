@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>IA Quest.</title>
 
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
@@ -37,7 +37,7 @@
 
                         <!-- Branding Image -->
                         <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ config('app.name', 'Laravel') }}
+                            IA Quest.
                         </a>
                     </div>
 
@@ -45,9 +45,18 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="nav navbar-nav">
                             <li><a href="{{ url('/admin') }}">Dashboard <span class="sr-only">(current)</span></a></li>
-                            <li><router-link to="/users">Users</router-link></li>
-                            <li><router-link to="/roles">Roles</router-link></li>
-                            <li><router-link to="/permissions">Permissions</router-link></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Manage <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><router-link to="/users">Users</router-link></li>
+                                    <li><router-link to="/roles">Roles</router-link></li>
+                                    <li><router-link to="/permissions">Permissions</router-link></li>
+                                </ul>
+                            </li>
+                            <li><router-link to="/surveys">Surveys</router-link></li>
                         </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="nav navbar-nav navbar-right">
@@ -90,15 +99,8 @@
 
             @yield('content')
 
-            <hr/>
-
-            <div class="container">
-                &copy; {{ date('Y') }}. Created by <a href="http://www.appzcoder.com">AppzCoder</a>
-                <br/>
-            </div>
-
         </div>
         <!-- Scripts -->
-        <script src="/js/backend-app.js"></script>
+        <script src="../js/backend-app.js"></script>
     </body>
 </html>

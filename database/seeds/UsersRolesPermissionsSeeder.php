@@ -17,9 +17,16 @@ class UsersRolesPermissionsSeeder extends Seeder
         // Create user
         User::create([
             'name' => 'Administrator',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('123456'),
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
         ]);
+
+        User::create([
+            'name' => 'Orestis Rodriguez',
+            'email' => 'orestis@orestisrodriguez.com',
+            'password' => bcrypt('orestis'),
+        ]);
+
 
         // Create roles
         Role::create([
@@ -38,9 +45,14 @@ class UsersRolesPermissionsSeeder extends Seeder
             'label' => 'All Permissions',
         ]);
 
-        $user = User::whereEmail('admin@example.com')->first();
+        $admin = User::whereEmail('admin@admin.com')->first();
+        if ($admin) {
+            $admin->assignRole('admin');
+        }
+
+        $user = User::whereEmail('orestis@orestisrodriguez.com')->first();
         if ($user) {
-            $user->assignRole('admin');
+            $user->assignRole('user');
         }
 
         // Give permission to admin role

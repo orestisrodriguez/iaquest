@@ -6,7 +6,7 @@
  */
 
 require('./bootstrap');
-const VueRouter = require('vue-router');
+import VueRouter from 'vue-router';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,17 +16,19 @@ const VueRouter = require('vue-router');
 
 Vue.use(VueRouter);
 
-var Dashboard = require('./components/Dashboard.vue');
-var Users = require('./components/Users.vue');
-var Roles = require('./components/Roles.vue');
-var Permissions = require('./components/Permissions.vue');
+var Dashboard = require('./components/admin/Dashboard.vue');
+var Users = require('./components/admin/Users.vue');
+var Roles = require('./components/admin/Roles.vue');
+var Permissions = require('./components/admin/Permissions.vue');
+var Surveys = require('./components/admin/Surveys.vue');
 
 var router = new VueRouter({
     routes: [
         { path: '/', component: Dashboard },
         { path: '/users', component: Users },
         { path: '/roles', component: Roles },
-        { path: '/permissions', component: Permissions }
+        { path: '/permissions', component: Permissions },
+        { path: '/surveys', component: Surveys }
     ]
 })
 
